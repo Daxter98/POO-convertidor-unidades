@@ -10,12 +10,15 @@ package cu05;
  * @author gem2u
  */
 public class CU05 {
+   
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Portada vista = new Portada();
+        vista.setVisible(true);
     }
     
 }
