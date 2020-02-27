@@ -5,14 +5,13 @@
  */
 package cu05;
 import cu05.control.EntradaControl;
-import cu05.beans.ControlBeans;
 
 /**
  *
  * @author gem2u
  */
 public class VistaPrincipal extends javax.swing.JFrame {
-    EntradaControl controlEntrada = new EntradaControl();
+    public EntradaControl controlEntrada = new EntradaControl();
 
     /**
      * Creates new form VistaPrincipal
@@ -70,6 +69,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         });
 
         jLabel3.setText("A:");
+
+        cbDestino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDestinoActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Resultado:");
 
@@ -163,8 +168,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void btConvetirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConvetirActionPerformed
         // TODO add your handling code here:
         String numeroEntrada =  tfEntrada.getText();
-        
         controlEntrada.validarNumero(numeroEntrada);
+        String base = (String) cbBase.getSelectedItem();
+        String destino = (String) cbDestino.getSelectedItem();
+        String jefe = (String) cbJefe.getSelectedItem();
+        controlEntrada.validarBaseyDestino(base, destino, jefe);
     }//GEN-LAST:event_btConvetirActionPerformed
 
     private void btTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTerminarActionPerformed
@@ -177,12 +185,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
         String tipoConversion = (String)cbJefe.getSelectedItem();
         controlEntrada.controlConversion(tipoConversion);
         cbBase.setModel(controlEntrada.cb.getModelo());
-        cbDestino.setModel(controlEntrada.cb2.getModelo());
+        cbDestino.setModel(controlEntrada.cb.getModelo2());
     }//GEN-LAST:event_cbJefeActionPerformed
 
     private void cbBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBaseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbBaseActionPerformed
+
+    private void cbDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDestinoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbDestinoActionPerformed
 
     /**
      * @param args the command line arguments
