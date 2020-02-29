@@ -10,10 +10,9 @@ package cu05.dao;
  * @author gem2u
  */
 public class ConversorDAO {
-    public double conversorLongitud(double dato, int baseIndex, int destinoIndex){
+    public double conversorLongitud(double dato, int destinoIndex){
         double resultado = 0.0;
         System.out.println(dato);
-        System.out.println(baseIndex);
         System.out.println(destinoIndex);
         return resultado;
     }

@@ -65,13 +65,16 @@ public class EntradaControl {
         }
     }
     
-    public void validacionCampoEntrada(char validar){
+    public void validacionCampoEntrada(char validar, String numeroEntrada){
         
         if(Character.isLetter(validar)){
            JOptionPane.showMessageDialog(null, "No debe de ingresar letras en el campo."); 
         }
         if(Character.isSpaceChar(validar)){
             JOptionPane.showMessageDialog(null, "No debe de ingresar espacios en el campo."); 
+        }
+        if(validar == '.' && numeroEntrada.contains(".")){
+            JOptionPane.showMessageDialog(null, "No debe ingresar dos puntos decimales.");
         }
     }
     
@@ -89,7 +92,7 @@ public class EntradaControl {
                 case 7:{dato *= 30.48;}break; //ft a cm
                 case 8:{dato *= 2.54;}break; //in a cm
             }
-            conv.conversorLongitud(dato, baseIndex, destinoIndex);
+            conv.conversorLongitud(dato, destinoIndex);
         }
     }   
 }
