@@ -60,6 +60,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jLabel1.setText("Convetir:");
 
+        tfEntrada.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfnumeroEntrada(evt);
+            }
+        });
+
         jLabel2.setText("De:");
 
         cbBase.addActionListener(new java.awt.event.ActionListener() {
@@ -169,10 +175,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         String numeroEntrada =  tfEntrada.getText();
         controlEntrada.validarNumero(numeroEntrada);
-        String base = (String) cbBase.getSelectedItem();
-        String destino = (String) cbDestino.getSelectedItem();
         String jefe = (String) cbJefe.getSelectedItem();
-        controlEntrada.validarBaseyDestino(base, destino, jefe);
+        int baseIndex = cbBase.getSelectedIndex();
+        int destinoIndex = cbDestino.getSelectedIndex();
+        controlEntrada.validarBaseyDestino(jefe, baseIndex, destinoIndex);
     }//GEN-LAST:event_btConvetirActionPerformed
 
     private void btTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTerminarActionPerformed
@@ -195,6 +201,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void cbDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDestinoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbDestinoActionPerformed
+
+    private void tfnumeroEntrada(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfnumeroEntrada
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        controlEntrada.validacionCampoEntrada(validar);
+    }//GEN-LAST:event_tfnumeroEntrada
 
     /**
      * @param args the command line arguments

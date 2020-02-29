@@ -22,7 +22,7 @@ public class EntradaControl {
           JOptionPane.showMessageDialog(null, "El campo del numero esta vacio, debe llenarlo");
       }else{
           double numero = Double.parseDouble(numeroEntrada);
-          conv.OriginalAEstandar(numero);
+          cb.setNumero(numero);
       }
     }
     
@@ -65,46 +65,31 @@ public class EntradaControl {
         }
     }
     
-    public void validarBaseyDestino(String base, String destino, String jefe){
-    int codigo = 0;
-    if(jefe == "Longitud"){
-        if(base == "Kilometro"){
-           codigo = 1;
-           conv.operacionPorCodigo(codigo);
+    public void validacionCampoEntrada(char validar){
+        
+        if(Character.isLetter(validar)){
+           JOptionPane.showMessageDialog(null, "No debe de ingresar letras en el campo."); 
         }
-        if(base == "Metro"){
-            codigo = 2;
-            cb.setCodigo(codigo);
+        if(Character.isSpaceChar(validar)){
+            JOptionPane.showMessageDialog(null, "No debe de ingresar espacios en el campo."); 
         }
-        if(base == "Decimetro"){
-            codigo = 3;
-            cb.setCodigo(codigo);
-        }
-        if(base == "Centimetro"){
-            codigo = 4;
-            cb.setCodigo(codigo);
-        }
-        if(base == "Milimetro"){
-            codigo = 5;
-            cb.setCodigo(codigo);
-        }
-        if(base == "Milla"){
-            codigo = 6;
-            cb.setCodigo(codigo);
-        }
-        if(base == "Yarda"){
-            codigo = 7;
-            cb.setCodigo(codigo);
-        }
-        if(base == "Pie"){
-            codigo = 8;
-            cb.setCodigo(codigo);
-        }
-        if(base == "Pulgada"){
-            codigo = 9;
-            cb.setCodigo(codigo);
-        }
-      }   
-    } 
+    }
     
+    public void validarBaseyDestino(String jefe, int baseIndex, int destinoIndex){
+        if(jefe == "Longitud"){
+            double dato = cb.getNumero();
+            switch(baseIndex){
+                case 0:{dato *= 100000;}break;  //km a cm
+                case 1:{dato *= 100;}break; //m a cm
+                case 2:{dato *= 10;}break; //dm a cm
+                case 3:{dato = cb.getNumero();}break; //cm a cm
+                case 4:{dato /= 10;}break; //mm a cm
+                case 5:{dato *=160934;}break; //mi a cm
+                case 6:{dato *= 91.44;}break; //yd a cm
+                case 7:{dato *= 30.48;}break; //ft a cm
+                case 8:{dato *= 2.54;}break; //in a cm
+            }
+            conv.conversorLongitud(dato, baseIndex, destinoIndex);
+        }
+    }   
 }

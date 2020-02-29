@@ -13,7 +13,6 @@ import javax.swing.ComboBoxModel;
 public class ControlBeans {
     ComboBoxModel modelo;
     ComboBoxModel modelo2;
-    int codigo = 0;
     double numero = 0.0;
 
     public double getNumero() {
@@ -38,15 +37,5 @@ public class ControlBeans {
 
     public void setModelo2(ComboBoxModel modelo2) {
         this.modelo2 = modelo2;
-    }
-
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-    
-    
+    }    
 }

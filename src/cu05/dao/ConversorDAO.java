@@ -10,13 +10,12 @@ package cu05.dao;
  * @author gem2u
  */
 public class ConversorDAO {
-    public double OriginalAEstandar(double numero){
-        System.out.println(numero); //Para pruebas
-        return numero;
-    }
-    
-    public void operacionPorCodigo(int codigo){
-        System.out.println(codigo);
+    public double conversorLongitud(double dato, int baseIndex, int destinoIndex){
+        double resultado = 0.0;
+        System.out.println(dato);
+        System.out.println(baseIndex);
+        System.out.println(destinoIndex);
+        return resultado;
     }
     
 }
