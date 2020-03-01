@@ -175,10 +175,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         String numeroEntrada =  tfEntrada.getText();
         controlEntrada.validarNumero(numeroEntrada);
-        String jefe = (String) cbJefe.getSelectedItem();
+        int mainIndex = cbJefe.getSelectedIndex();
         int baseIndex = cbBase.getSelectedIndex();
         int destinoIndex = cbDestino.getSelectedIndex();
-        controlEntrada.validarBaseyDestino(jefe, baseIndex, destinoIndex);
+        controlEntrada.validarBaseyDestino(mainIndex, baseIndex, destinoIndex);
+        tfResultado.setText(controlEntrada.cb.getResultado());
     }//GEN-LAST:event_btConvetirActionPerformed
 
     private void btTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTerminarActionPerformed
@@ -188,7 +189,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void cbJefeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbJefeActionPerformed
         // TODO add your handling code here:
-        String tipoConversion = (String)cbJefe.getSelectedItem();
+        int tipoConversion = cbJefe.getSelectedIndex();
         controlEntrada.controlConversion(tipoConversion);
         cbBase.setModel(controlEntrada.cb.getModelo());
         cbDestino.setModel(controlEntrada.cb.getModelo2());

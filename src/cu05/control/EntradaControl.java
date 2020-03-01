@@ -8,7 +8,7 @@ import cu05.dao.ConversorDAO;
 import javax.swing.ComboBoxModel;
 import cu05.beans.ControlBeans;
 import javax.swing.JOptionPane;
-
+import java.text.DecimalFormat;
 /**
  *
  * @author gem2u
@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 public class EntradaControl {
     public ControlBeans cb = new ControlBeans();
     public ConversorDAO conv = new ConversorDAO();
+    public DecimalFormat formato = new DecimalFormat("#.00");
     
     public void validarNumero(String numeroEntrada){
       if(numeroEntrada == null || numeroEntrada.isEmpty()){
@@ -26,38 +27,38 @@ public class EntradaControl {
       }
     }
     
-    public void controlConversion(String tipoConversion){
-        if(tipoConversion == "Longitud"){
+    public void controlConversion(int tipoConversion){
+        if(tipoConversion == 0){ //Para Longitud
            ComboBoxModel cbcadena = new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilometro", "Metro", "Decímetro", "Centímetro", "Milímetro", "Milla", "Yarda", "Pie", "Pulgada"});
            ComboBoxModel cbcadena2 = new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilometro", "Metro", "Decímetro", "Centímetro", "Milímetro", "Milla", "Yarda", "Pie", "Pulgada"});
            cb.setModelo(cbcadena);
            cb.setModelo2(cbcadena2);
         }
-        if(tipoConversion == "Superficie"){
-           ComboBoxModel cbcadena = new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilometro cuadrado", "Hectarea", "Metro cuadrado", "Decimetro cuadrado", "Centímetro cuadrado", "Milimetro cuadrado"});
-           ComboBoxModel cbcadena2 = new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilometro cuadrado", "Hectarea", "Metro cuadrado", "Decimetro cuadrado", "Centímetro cuadrado", "Milimetro cuadrado"});
+        if(tipoConversion == 1){ //Para Superficie
+           ComboBoxModel cbcadena = new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilometro cuadrado", "Hectarea", "Area", "Metro cuadrado", "Decimetro cuadrado", "Centímetro cuadrado", "Milimetro cuadrado", "Milla cuadrada", "Acre", "Yarda cuadrada", "Pie cuadrado", "Pulgada cuadrada"});
+           ComboBoxModel cbcadena2 = new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilometro cuadrado", "Hectarea", "Area", "Metro cuadrado", "Decimetro cuadrado", "Centímetro cuadrado", "Milimetro cuadrado","Milla cuadrada", "Acre", "Yarda cuadrada", "Pie cuadrado", "Pulgada cuadrada"});
            cb.setModelo(cbcadena);
            cb.setModelo2(cbcadena2);
         }
-        if(tipoConversion == "Volumen"){
-           ComboBoxModel cbcadena = new javax.swing.DefaultComboBoxModel<>(new String[] { "Metro cúbico", "Hectolitro", "Decalitro", "Decímetro", "Litro", "Decilitro", "Centilitro", "Centímetro cúbico", "Barril", "Pie cúbico", "Galón", "Cuarto de galón", "Pinta", "Agalla", "Onza líquida", "Pulgada cúbica"});
-           ComboBoxModel cbcadena2 = new javax.swing.DefaultComboBoxModel<>(new String[] { "Metro cúbico", "Hectolitro", "Decalitro", "Decímetro", "Litro", "Decilitro", "Centilitro", "Centímetro cúbico", "Barril", "Pie cúbico", "Galón", "Cuarto de galón", "Pinta", "Agalla", "Onza líquida", "Pulgada cúbica"});
+        if(tipoConversion == 2){ //Para Volumen
+           ComboBoxModel cbcadena = new javax.swing.DefaultComboBoxModel<>(new String[] { "Metro cúbico", "Hectolitro", "Decalitro", "Decímetro", "Litro", "Decilitro", "Centilitro", "Centímetro cúbico", "Barril inglés", "Pie cúbico", "Galón", "Cuarto de galón", "Pinta", "Agalla", "Onza líquida", "Pulgada cúbica"});
+           ComboBoxModel cbcadena2 = new javax.swing.DefaultComboBoxModel<>(new String[] { "Metro cúbico", "Hectolitro", "Decalitro", "Decímetro", "Litro", "Decilitro", "Centilitro", "Centímetro cúbico", "Barril inglés", "Pie cúbico", "Galón", "Cuarto de galón", "Pinta", "Agalla", "Onza líquida", "Pulgada cúbica"});
            cb.setModelo(cbcadena);
            cb.setModelo2(cbcadena2);
         }
-        if(tipoConversion == "Masa y Peso"){
+        if(tipoConversion == 3){ //Para Masa y Peso
            ComboBoxModel cbcadena = new javax.swing.DefaultComboBoxModel<>(new String[] { "Tonelada", "Kilonewton", "Hectogramo", "Gramo", "Quilate", "Centigramo", "Miligramo", "Microgramo", "Tonelada larga", "Tonelada corta", "Quintal largo", "Quintal corto", "Piedra", "Libra", "Onza"});
            ComboBoxModel cbcadena2 = new javax.swing.DefaultComboBoxModel<>(new String[] { "Tonelada", "Kilonewton", "Hectogramo", "Gramo", "Quilate", "Centigramo", "Miligramo", "Microgramo", "Tonelada larga", "Tonelada corta", "Quintal largo", "Quintal corto", "Piedra", "Libra", "Onza"});
            cb.setModelo(cbcadena);
            cb.setModelo2(cbcadena2);
         }
-        if(tipoConversion == "Velocidad"){
+        if(tipoConversion == 4){ //Para Velocidad
            ComboBoxModel cbcadena = new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilometros por segundo", "Metros por segundo", "Milimetro por segundo", "Micrometro por segundo", "Milla por segundo", "Milla por hora", "Pie por segundo", "Nauticos", "Nudos"});
            ComboBoxModel cbcadena2 = new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilometros por segundo", "Metros por segundo", "Milimetro por segundo", "Micrometro por segundo", "Milla por segundo", "Milla por hora", "Pie por segundo", "Nauticos", "Nudos"});
            cb.setModelo(cbcadena);
            cb.setModelo2(cbcadena2);
         }
-        if(tipoConversion == "Temperatura"){
+        if(tipoConversion == 5){ //Para Temperatura
            ComboBoxModel cbcadena = new javax.swing.DefaultComboBoxModel<>(new String[] { "Celsius", "Fahrenheit", "Kelvin"});
            ComboBoxModel cbcadena2 = new javax.swing.DefaultComboBoxModel<>(new String[] { "Celsius", "Fahrenheit", "Kelvin"});
            cb.setModelo(cbcadena);
@@ -78,9 +79,12 @@ public class EntradaControl {
         }
     }
     
-    public void validarBaseyDestino(String jefe, int baseIndex, int destinoIndex){
-        if(jefe == "Longitud"){
-            double dato = cb.getNumero();
+    public void validarBaseyDestino(int mainIndex, int baseIndex, int destinoIndex){
+        double dato = cb.getNumero();
+        double respuesta = 0.0;
+        String resultado = "";
+        
+        if(mainIndex == 0){ //Para Longitud
             switch(baseIndex){
                 case 0:{dato *= 100000;}break;  //km a cm
                 case 1:{dato *= 100;}break; //m a cm
@@ -92,7 +96,53 @@ public class EntradaControl {
                 case 7:{dato *= 30.48;}break; //ft a cm
                 case 8:{dato *= 2.54;}break; //in a cm
             }
-            conv.conversorLongitud(dato, destinoIndex);
+            respuesta = conv.conversorLongitud(dato, destinoIndex);
+            resultado = String.valueOf(formato.format(respuesta));
+            cb.setResultado(resultado);
         }
-    }   
+        
+        if(mainIndex == 1){ //Para Superficie
+            switch(baseIndex){
+                case 0:{dato *= 1000000;}break; //km^2 a m^2
+                case 1:{dato *= 10000;}break; //ha a m^2
+                case 2:{dato *= 100;}break; //a -> m^2
+                case 3:{dato = cb.getNumero();}break; //m^2 a m^2
+                case 4:{dato /= 100;}break; //dm^2 a m^2
+                case 5:{dato /= 10000;}break; //cm^2 a m^2
+                case 6:{dato /= 1000000;}break; //mm^2 a m^2
+                case 7:{dato *= 2589987.83;}break; //mi^2 a m^2
+                case 8:{dato *= 4047;}break; //acre a m^2
+                case 9:{dato /= 1.196;}break; //yd^2 a m^2
+                case 10:{dato /= 10.764;}break; //ft^2 a m^2
+                case 11:{dato /= 1550;}break; //in^2 a m^2
+            }
+            respuesta = conv.conversorSuperficie(dato, destinoIndex);
+            resultado = String.valueOf(formato.format(respuesta));
+            cb.setResultado(resultado);
+        }
+        
+        if(mainIndex == 2){ //Para Volumen
+            switch(baseIndex){
+                case 0:{dato *= 1000;}break; //m^3 a lt
+                case 1:{dato *= 100;}break; //hec a lt
+                case 2:{dato *= 10;}break; //deca a lt
+                case 3:{dato *= 1;}break; //dm^3 a lt
+                case 4:{dato = cb.getNumero();}break; //lt a lt
+                case 5:{dato /= 10;}break; //dec a lt
+                case 6:{dato /= 100;}break; //cen a lt
+                case 7:{dato /= 1000;}break; //cm^3 a lt
+                case 8:{dato *= 163.65;}break; //barril a lt
+                case 9:{dato *= 28.32;}break; //ft^3 a lt
+                case 10:{dato *= 4.55;}break; //gal a lt
+                case 11:{dato *= 1.44;}break; //qt a lt
+                case 12:{dato *= 0.57;}break; //pt a lt
+                case 13:{dato *= 0.12;}break; //agalla a lt
+                case 14:{dato *= 0.03;}break; //oz a lt
+                case 15:{dato *= 0.02;}break; //in^3 a lt
+            }
+            respuesta = conv.conversorVolumen(dato, destinoIndex);
+            resultado = String.valueOf(formato.format(respuesta));
+            cb.setResultado(resultado);
+        }
+    }
 }
