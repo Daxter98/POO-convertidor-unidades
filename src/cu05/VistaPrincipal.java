@@ -42,6 +42,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         tfResultado = new javax.swing.JTextField();
         btConvetir = new javax.swing.JButton();
         btTerminar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(290, 320));
@@ -52,6 +53,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         lbTitulo.setText("CONVERTIDOR DE UNIDADES");
 
         cbJefe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Longitud", "Superficie", "Volumen", "Masa y Peso", "Velocidad", "Temperatura" }));
+        cbJefe.setSelectedIndex(-1);
         cbJefe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbJefeActionPerformed(evt);
@@ -98,44 +100,47 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Tipo de conversion:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(27, 27, 27)
+                .addComponent(cbJefe, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(458, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbBase, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfResultado))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 457, Short.MAX_VALUE))
+                        .addGap(58, 58, 58)
+                        .addComponent(lbTitulo))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btConvetir)
-                                .addGap(58, 58, 58)
-                                .addComponent(btTerminar))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbJefe, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(lbTitulo)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btConvetir)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btTerminar))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cbBase, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(tfResultado))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(cbDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -144,7 +149,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(lbTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbJefe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbJefe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -174,17 +181,17 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void btConvetirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConvetirActionPerformed
         // TODO add your handling code here:
         String numeroEntrada =  tfEntrada.getText();
-        controlEntrada.validarNumero(numeroEntrada);
         int mainIndex = cbJefe.getSelectedIndex();
         int baseIndex = cbBase.getSelectedIndex();
         int destinoIndex = cbDestino.getSelectedIndex();
+        controlEntrada.validarNumero(numeroEntrada, mainIndex);
         controlEntrada.validarBaseyDestino(mainIndex, baseIndex, destinoIndex);
         tfResultado.setText(controlEntrada.cb.getResultado());
     }//GEN-LAST:event_btConvetirActionPerformed
 
     private void btTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTerminarActionPerformed
         // TODO add your handling code here:
-        System.exit(WIDTH);
+        System.exit(0);
     }//GEN-LAST:event_btTerminarActionPerformed
 
     private void cbJefeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbJefeActionPerformed
@@ -193,6 +200,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         controlEntrada.controlConversion(tipoConversion);
         cbBase.setModel(controlEntrada.cb.getModelo());
         cbDestino.setModel(controlEntrada.cb.getModelo2());
+        tfEntrada.setText("");
+        tfResultado.setText("");
     }//GEN-LAST:event_cbJefeActionPerformed
 
     private void cbBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBaseActionPerformed
@@ -255,6 +264,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lbTitulo;
     private javax.swing.JTextField tfEntrada;
     private javax.swing.JTextField tfResultado;

@@ -16,15 +16,19 @@ import java.text.DecimalFormat;
 public class EntradaControl {
     public ControlBeans cb = new ControlBeans();
     public ConversorDAO conv = new ConversorDAO();
-    public DecimalFormat formato = new DecimalFormat("#.0000000000");
+    public DecimalFormat formato = new DecimalFormat("#,###.0000");
     
-    public void validarNumero(String numeroEntrada){
-      if(numeroEntrada == null || numeroEntrada.isEmpty()){
-          JOptionPane.showMessageDialog(null, "El campo del numero esta vacio, debe llenarlo");
-      }else{
-          double numero = Double.parseDouble(numeroEntrada);
-          cb.setNumero(numero);
-      }
+    public void validarNumero(String numeroEntrada, int mainIndex){
+        if(mainIndex == -1){
+            JOptionPane.showMessageDialog(null, "Debe de elegir un tipo de conversion");
+        }else{
+            if(numeroEntrada == null || numeroEntrada.isEmpty()){
+                JOptionPane.showMessageDialog(null, "El campo del numero esta vacio, debe llenarlo");
+            }else{
+                double numero = Double.parseDouble(numeroEntrada);
+                cb.setNumero(numero);
+            }
+        }
     }
     
     public void controlConversion(int tipoConversion){
@@ -53,8 +57,8 @@ public class EntradaControl {
            cb.setModelo2(cbcadena2);
         }
         if(tipoConversion == 4){ //Para Velocidad
-           ComboBoxModel cbcadena = new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilometros por segundo", "Metros por segundo", "Milimetro por segundo", "Micrometro por segundo", "Milla por segundo", "Milla por hora", "Pie por segundo", "Nauticos", "Nudos"});
-           ComboBoxModel cbcadena2 = new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilometros por segundo", "Metros por segundo", "Milimetro por segundo", "Micrometro por segundo", "Milla por segundo", "Milla por hora", "Pie por segundo", "Nauticos", "Nudos"});
+           ComboBoxModel cbcadena = new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilometros por segundo", "Metros por segundo", "Kilometros por hora", "Milimetro por segundo", "Micrometro por segundo", "Milla por segundo", "Milla por hora", "Pie por segundo", "Nudos"});
+           ComboBoxModel cbcadena2 = new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilometros por segundo","Metros por segundo", "Kiolometros por hora","Milimetro por segundo", "Micrometro por segundo", "Milla por segundo", "Milla por hora", "Pie por segundo", "Nudos"});
            cb.setModelo(cbcadena);
            cb.setModelo2(cbcadena2);
         }
@@ -164,7 +168,33 @@ public class EntradaControl {
                 case 15:{dato *= 28.35;}break; //oz a g
             }
             respuesta = conv.conversorMasaPeso(dato, destinoIndex);
-            resultado = String.valueOf(respuesta);
+            resultado = String.valueOf(formato.format(respuesta));
+            cb.setResultado(resultado);
+        }
+        if(mainIndex == 4){ //Para Velocidad
+            switch(baseIndex){
+                case 0:{dato *= 1000;}break; //km/s a m/s
+                case 1:{dato = cb.getNumero();}break; //m/s a m/s
+                case 2:{dato /= 3.6;}break; //km/h a m/s
+                case 3:{dato /= 1000;}break; //mm/s a m/s
+                case 4:{dato /= 1000000;}break; //microm/s a m/s
+                case 5:{dato *= 1609.34;}break; //mi/s a m/s
+                case 6:{dato /= 2.24;}break; //mph a m/s
+                case 7:{dato /= 3.28;}break; //ft/s a m/s
+                case 8:{dato /= 1.94;}break; //nudo a m/s
+            }
+            respuesta = conv.conversorVelocidad(dato, destinoIndex);
+            resultado = String.valueOf(formato.format(respuesta));
+            cb.setResultado(resultado);
+        }
+        if(mainIndex == 5){ //Para Temperatura
+            switch(baseIndex){
+                case 0:{dato = cb.getNumero();}break; //C° a C°
+                case 1:{dato = (dato - 32)*(0.55556);}break; //F° a C°
+                case 2:{dato -= 273.15;}break; //K° a C°
+            }
+            respuesta = conv.conversorTemeperatura(dato, destinoIndex);
+            resultado = String.valueOf(formato.format(respuesta));
             cb.setResultado(resultado);
         }
     }

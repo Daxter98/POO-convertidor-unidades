@@ -90,4 +90,31 @@ public class ConversorDAO {
         return dato;
     }
     
+    public double conversorVelocidad(double dato, int destinoIndex){
+        double dato_aux = dato;
+        switch(destinoIndex){
+            case 0:{dato /= 1000;}break; //m/s a km/s 
+            case 1:{dato = dato_aux;}break; //m/s a m/s
+            case 2:{dato *= 3.6;}break; //m/s a km/h
+            case 3:{dato *= 1000;}break; //m/s a mm/s
+            case 4:{dato *= 1000000;}break; //m/s a microm/s
+            case 5:{dato /= 1609.34;}break; //m/s a mi/s
+            case 6:{dato *= 2.24;}break; //m/s a mph
+            case 7:{dato *= 3.28;}break; //m/s a ft/s
+            case 8:{dato *= 1.94;}break; //m/s a nudo
+        }
+        return dato;
+    }
+    
+    public double conversorTemeperatura(double dato, int destinoIndex){
+        double dato_aux = dato;
+        switch(destinoIndex){
+            case 0:{dato = dato_aux;}break; //C° a C°
+            case 1:{dato = (dato*1.8)+32;}break; //C° a F°
+            case 2:{dato += 273.15;}break; //C° a K°
+        }
+        System.out.println(destinoIndex);
+        return dato;
+    }
+    
 }

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package cu05;
-
+import javax.swing.UIManager;
 /**
  *
  * @author gem2u
@@ -16,7 +16,17 @@ public class CU05 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+         try {
+            UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Portada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Portada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Portada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Portada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         Portada vista = new Portada();
         vista.setVisible(true);
     }
