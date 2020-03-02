@@ -47,22 +47,45 @@ public class ConversorDAO {
     public double conversorVolumen(double dato, int destinoIndex){
         double dato_aux = dato;
         switch(destinoIndex){
-            case 0:{dato /= 1000;}break; //m^3 a lt
-            case 1:{dato /= 100;}break; //hec a lt
-            case 2:{dato /= 10;}break; //deca a lt
-            case 3:{dato /= 1;}break; //dm^3 a lt
+            case 0:{dato /= 1000;}break; //lt a m^3
+            case 1:{dato /= 100;}break; //lt a hec
+            case 2:{dato /= 10;}break; //lt a deca
+            case 3:{dato /= 1;}break; //lt a dm^3
             case 4:{dato = dato_aux;}break; //lt a lt
-            case 5:{dato *= 10;}break; //dec a lt
-            case 6:{dato *= 100;}break; //cen a lt
-            case 7:{dato *= 1000;}break; //cm^3 a lt
-            case 8:{dato /= 163.65;}break; //barril a lt
-            case 9:{dato /= 28.32;}break; //ft^3 a lt
-            case 10:{dato /= 4.55;}break; //gal a lt
-            case 11:{dato /= 1.44;}break; //qt a lt
-            case 12:{dato /= 0.57;}break; //pt a lt
-            case 13:{dato /= 0.12;}break; //agalla a lt
-            case 14:{dato /= 0.03;}break; //oz a lt
-            case 15:{dato /= 0.02;}break; //in^3 a lt
+            case 5:{dato *= 10;}break; //lt a dec
+            case 6:{dato *= 100;}break; //lt a cen
+            case 7:{dato *= 1000;}break; //lt a cm^3
+            case 8:{dato /= 158.99;}break; //lt a barril
+            case 9:{dato /= 28.317;}break; //lt a ft^3
+            case 10:{dato /= 3.785;}break; //lt a gal
+            case 11:{dato *= 1.057;}break; //lt a qt
+            case 12:{dato *= 2.113;}break; //lt a pt
+            case 13:{dato *= 8.45;}break; //lt a agalla
+            case 14:{dato *= 33.814;}break; //lt a oz
+            case 15:{dato *= 61.024;}break; //lt a in^3
+         }
+        return dato;
+    }
+    
+    public double conversorMasaPeso(double dato, int destinoIndex){
+        double dato_aux = dato;
+        switch(destinoIndex){
+            case 0:{dato /= 1000000;}break; //g a t
+            case 1:{dato /= 101971.6;}break; //g a kN
+            case 2:{dato /= 1000;}break; //g a kg
+            case 3:{dato /= 100;}break; //g a hg
+            case 4:{dato = dato_aux;}break; //g a g
+            case 5:{dato *= 5;}break; //g a quilate
+            case 6:{dato *= 100;}break; //g centigramo
+            case 7:{dato *= 1000;}break; //g a miligramo
+            case 8:{dato *= 1000000;}break; //g a microgramo
+            case 9:{dato /= 1016046.91;}break; //g a t larga
+            case 10:{dato /= 907184.74;}break; //g a t corta
+            case 11:{dato /= 50802.35;}break; //g a quintal largo
+            case 12:{dato /= 45359.24;}break; //g a quintal corto
+            case 13:{dato /= 6350.29;}break; //g a piedra
+            case 14:{dato /= 453.59;}break; //g a lb
+            case 15:{dato /= 28.35;}break; //g a oz
         }
         return dato;
     }

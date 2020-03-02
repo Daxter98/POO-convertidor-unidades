@@ -16,7 +16,7 @@ import java.text.DecimalFormat;
 public class EntradaControl {
     public ControlBeans cb = new ControlBeans();
     public ConversorDAO conv = new ConversorDAO();
-    public DecimalFormat formato = new DecimalFormat("#.00");
+    public DecimalFormat formato = new DecimalFormat("#.0000000000");
     
     public void validarNumero(String numeroEntrada){
       if(numeroEntrada == null || numeroEntrada.isEmpty()){
@@ -41,14 +41,14 @@ public class EntradaControl {
            cb.setModelo2(cbcadena2);
         }
         if(tipoConversion == 2){ //Para Volumen
-           ComboBoxModel cbcadena = new javax.swing.DefaultComboBoxModel<>(new String[] { "Metro cúbico", "Hectolitro", "Decalitro", "Decímetro", "Litro", "Decilitro", "Centilitro", "Centímetro cúbico", "Barril inglés", "Pie cúbico", "Galón", "Cuarto de galón", "Pinta", "Agalla", "Onza líquida", "Pulgada cúbica"});
-           ComboBoxModel cbcadena2 = new javax.swing.DefaultComboBoxModel<>(new String[] { "Metro cúbico", "Hectolitro", "Decalitro", "Decímetro", "Litro", "Decilitro", "Centilitro", "Centímetro cúbico", "Barril inglés", "Pie cúbico", "Galón", "Cuarto de galón", "Pinta", "Agalla", "Onza líquida", "Pulgada cúbica"});
+           ComboBoxModel cbcadena = new javax.swing.DefaultComboBoxModel<>(new String[] { "Metro cúbico", "Hectolitro", "Decalitro", "Decímetro", "Litro", "Decilitro", "Centilitro", "Centímetro cúbico", "Barril americano", "Pie cúbico", "Galón americano", "Cuarto de galón americano", "Pinta americana", "Agalla", "Onza líquida americana", "Pulgada cúbica"});
+           ComboBoxModel cbcadena2 = new javax.swing.DefaultComboBoxModel<>(new String[] { "Metro cúbico", "Hectolitro", "Decalitro", "Decímetro", "Litro", "Decilitro", "Centilitro", "Centímetro cúbico", "Barril americano", "Pie cúbico", "Galón americano", "Cuarto de galón americano", "Pinta americana", "Agalla", "Onza líquida americana", "Pulgada cúbica"});
            cb.setModelo(cbcadena);
            cb.setModelo2(cbcadena2);
         }
         if(tipoConversion == 3){ //Para Masa y Peso
-           ComboBoxModel cbcadena = new javax.swing.DefaultComboBoxModel<>(new String[] { "Tonelada", "Kilonewton", "Hectogramo", "Gramo", "Quilate", "Centigramo", "Miligramo", "Microgramo", "Tonelada larga", "Tonelada corta", "Quintal largo", "Quintal corto", "Piedra", "Libra", "Onza"});
-           ComboBoxModel cbcadena2 = new javax.swing.DefaultComboBoxModel<>(new String[] { "Tonelada", "Kilonewton", "Hectogramo", "Gramo", "Quilate", "Centigramo", "Miligramo", "Microgramo", "Tonelada larga", "Tonelada corta", "Quintal largo", "Quintal corto", "Piedra", "Libra", "Onza"});
+           ComboBoxModel cbcadena = new javax.swing.DefaultComboBoxModel<>(new String[] { "Tonelada", "Kilonewton","Kilogramo", "Hectogramo", "Gramo", "Quilate", "Centigramo", "Miligramo", "Microgramo", "Tonelada larga", "Tonelada corta", "Quintal largo", "Quintal corto", "Piedra", "Libra", "Onza"});
+           ComboBoxModel cbcadena2 = new javax.swing.DefaultComboBoxModel<>(new String[] { "Tonelada", "Kilonewton","Kilogramo", "Hectogramo", "Gramo", "Quilate", "Centigramo", "Miligramo", "Microgramo", "Tonelada larga", "Tonelada corta", "Quintal largo", "Quintal corto", "Piedra", "Libra", "Onza"});
            cb.setModelo(cbcadena);
            cb.setModelo2(cbcadena2);
         }
@@ -131,17 +131,40 @@ public class EntradaControl {
                 case 5:{dato /= 10;}break; //dec a lt
                 case 6:{dato /= 100;}break; //cen a lt
                 case 7:{dato /= 1000;}break; //cm^3 a lt
-                case 8:{dato *= 163.65;}break; //barril a lt
-                case 9:{dato *= 28.32;}break; //ft^3 a lt
-                case 10:{dato *= 4.55;}break; //gal a lt
-                case 11:{dato *= 1.44;}break; //qt a lt
-                case 12:{dato *= 0.57;}break; //pt a lt
-                case 13:{dato *= 0.12;}break; //agalla a lt
-                case 14:{dato *= 0.03;}break; //oz a lt
-                case 15:{dato *= 0.02;}break; //in^3 a lt
+                case 8:{dato *= 158.99;}break; //barril a lt
+                case 9:{dato *= 28.317;}break; //ft^3 a lt
+                case 10:{dato *= 3.785;}break; //gal a lt
+                case 11:{dato /= 1.057;}break; //qt a lt
+                case 12:{dato /= 2.113;}break; //pt a lt
+                case 13:{dato /= 8.45;}break; //agalla a lt
+                case 14:{dato /= 33.814;}break; //oz a lt
+                case 15:{dato /= 61.024;}break; //in^3 a lt
             }
             respuesta = conv.conversorVolumen(dato, destinoIndex);
             resultado = String.valueOf(formato.format(respuesta));
+            cb.setResultado(resultado);
+        }
+        if(mainIndex == 3){ //Para masa y peso
+            switch(baseIndex){
+                case 0:{dato *= 1000000;}break; //t a g
+                case 1:{dato *= 101971.6;}break; //kN a g
+                case 2:{dato *= 1000;}break; //kg a g
+                case 3:{dato *= 100;}break; //hg a g
+                case 4:{dato = cb.getNumero();}break; //g a g
+                case 5:{dato /= 5;}break; //quilate a g
+                case 6:{dato /= 100;}break; //centigramo a g
+                case 7:{dato /= 1000;}break; //mg a g
+                case 8:{dato /= 1000000;}break; //microg a g
+                case 9:{dato *= 1016046.91;}break; //t larga a g
+                case 10:{dato *= 907184.74;}break; //t corta a g
+                case 11:{dato *= 50802.35;}break; //quintal largo a g
+                case 12:{dato *= 45359.24;}break; //quintal corto a g
+                case 13:{dato *= 6350.29;}break; //piedra a g
+                case 14:{dato *= 453.59;}break; //lb a g
+                case 15:{dato *= 28.35;}break; //oz a g
+            }
+            respuesta = conv.conversorMasaPeso(dato, destinoIndex);
+            resultado = String.valueOf(respuesta);
             cb.setResultado(resultado);
         }
     }
