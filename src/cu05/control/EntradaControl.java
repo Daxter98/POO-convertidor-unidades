@@ -24,6 +24,9 @@ public class EntradaControl {
         }else{
             if(numeroEntrada == null || numeroEntrada.isEmpty()){
                 JOptionPane.showMessageDialog(null, "El campo del numero esta vacio, debe llenarlo");
+                numeroEntrada = " ";
+                double numero = Double.parseDouble(numeroEntrada);
+                cb.setNumero(numero);
             }else{
                 double numero = Double.parseDouble(numeroEntrada);
                 cb.setNumero(numero);
@@ -72,7 +75,8 @@ public class EntradaControl {
     
     public void validacionCampoEntrada(char validar, String numeroEntrada, int mainIndex){
         if(Character.isLetter(validar)){
-           JOptionPane.showMessageDialog(null, "No debe de ingresar letras en el campo."); 
+           JOptionPane.showMessageDialog(null, "No debe de ingresar letras en el campo.");
+           
         }
         if(Character.isSpaceChar(validar)){
             JOptionPane.showMessageDialog(null, "No debe de ingresar espacios en el campo."); 
