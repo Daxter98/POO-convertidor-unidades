@@ -70,8 +70,7 @@ public class EntradaControl {
         }
     }
     
-    public void validacionCampoEntrada(char validar, String numeroEntrada){
-        
+    public void validacionCampoEntrada(char validar, String numeroEntrada, int mainIndex){
         if(Character.isLetter(validar)){
            JOptionPane.showMessageDialog(null, "No debe de ingresar letras en el campo."); 
         }
@@ -80,6 +79,9 @@ public class EntradaControl {
         }
         if(validar == '.' && numeroEntrada.contains(".")){
             JOptionPane.showMessageDialog(null, "No debe ingresar dos puntos decimales.");
+        }
+        if(validar == '-' && mainIndex != 5){
+            JOptionPane.showMessageDialog(null, "En este tipo de conversión, no puede ingresar números negativos");
         }
     }
     

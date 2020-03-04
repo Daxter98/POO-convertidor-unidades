@@ -215,8 +215,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void tfnumeroEntrada(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfnumeroEntrada
         // TODO add your handling code here:
         char validar = evt.getKeyChar();
+        int mainIndex = cbJefe.getSelectedIndex();
         String numeroEntrada =  tfEntrada.getText();
-        controlEntrada.validacionCampoEntrada(validar, numeroEntrada);
+        controlEntrada.validacionCampoEntrada(validar, numeroEntrada, mainIndex);
     }//GEN-LAST:event_tfnumeroEntrada
 
     /**
