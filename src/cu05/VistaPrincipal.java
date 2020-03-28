@@ -12,13 +12,14 @@ import cu05.control.EntradaControl;
  */
 public class VistaPrincipal extends javax.swing.JFrame {
     public EntradaControl controlEntrada = new EntradaControl();
-
+    int actualBase = 0, actualDestino = 0;
     /**
      * Creates new form VistaPrincipal
      */
     public VistaPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        tfResultado.setEnabled(false);
     }
 
     /**
@@ -198,18 +199,31 @@ public class VistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         int tipoConversion = cbJefe.getSelectedIndex();
         controlEntrada.controlConversion(tipoConversion);
+        
         cbBase.setModel(controlEntrada.cb.getModelo());
+        cbBase.setSelectedIndex(0);
+        
         cbDestino.setModel(controlEntrada.cb.getModelo2());
+        cbDestino.setSelectedIndex(1);
+        
+        actualBase = cbBase.getSelectedIndex();
+        actualDestino = cbDestino.getSelectedIndex();
+        
         tfEntrada.setText("");
         tfResultado.setText("");
     }//GEN-LAST:event_cbJefeActionPerformed
 
     private void cbBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBaseActionPerformed
-        // TODO add your handling code here:
+        
+        actualizarValoresA();
+        
+        actualDestino = cbBase.getSelectedIndex();
     }//GEN-LAST:event_cbBaseActionPerformed
 
     private void cbDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDestinoActionPerformed
-        // TODO add your handling code here:
+        
+        actualizarValoresA();
+        actualBase = cbDestino.getSelectedIndex();
     }//GEN-LAST:event_cbDestinoActionPerformed
 
     private void tfnumeroEntrada(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfnumeroEntrada
@@ -254,7 +268,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
     }
-
+    private void actualizarValoresA()
+    {
+        if(cbBase.getSelectedItem().equals(cbDestino.getSelectedItem()))
+        {
+            int temp = actualBase;
+            actualBase = actualDestino;
+            actualDestino = temp;
+            cbBase.setSelectedIndex(actualDestino);
+            cbDestino.setSelectedIndex(actualBase);
+            
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConvetir;
     private javax.swing.JButton btTerminar;
